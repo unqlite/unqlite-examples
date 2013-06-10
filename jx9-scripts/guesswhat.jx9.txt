@@ -1,0 +1,22 @@
+$m = {
+    "firstName": "John",
+    "lastName": "Smith",
+    "age": 25,
+    "add": {
+        "streetAddress": "21 2nd Street",
+        "city": { "town":"New York"},
+        "state": "NY",
+        "postalCode": 10021
+    },
+    "phoneNumber": [
+        {
+            "type": "home",
+            "number": "212 555-1234"
+        },
+        {
+            "type": "fax",
+            "number": "646 555-4567"
+        }
+    ]
+};
+print $m.add.city.town..' '..'Ci'..'ty'; //New York City

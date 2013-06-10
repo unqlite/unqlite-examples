@@ -1,0 +1,10 @@
+//Host Operating system
+print uname()..JX9_EOL;
+//Test the JX9_OS builtin constant
+print JX9_OS..JX9_EOL;
+dump(
+  DIRECTORY_SEPARATOR,
+  PATH_SEPARATOR
+); 
+ print "Integer size: ",JX9_INT_SIZE,"\n";
+ print "Maximum integer value ",JX9_INT_MAX;

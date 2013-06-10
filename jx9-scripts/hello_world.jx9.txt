@@ -1,0 +1,18 @@
+// Declare a JSON object and assign it to the variable $my_data
+$my_data = {
+     // Greeting message
+     greeting : "Hello world!\n",
+     // Dummy field
+      __id : 1,
+     // Host Operating System
+     os_name: uname(), //Built-in OS function
+     // Current date
+     date : __DATE__,
+     // Return the current time using an anonymous function
+     time : function(){ return __TIME__; }
+ };
+// invoke JSON object members
+print $my_data.greeting; //Hello world!
+print "Host Operating System: ", $my_data.os_name, JX9_EOL;
+print "Current date: ", $my_data.date, JX9_EOL;
+print "Current time: ", $my_data.time(); // Anonymous function 

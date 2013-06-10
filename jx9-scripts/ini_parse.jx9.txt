@@ -1,0 +1,26 @@
+/* Parse INI chunk */
+$ini = <<<INI
+; This is a sample configuration file
+; Comments start with ';', as in php.ini
+
+[first_section]
+shell = zsh
+PC = Symisc-box/FreeBSD
+USER = DEAN
+
+[second_section]
+path = "/usr/local/bin"
+URL = "http://www.example.com/~username"
+
+[third_section]
+CIN[] = "First"
+CIN[] = "Second"
+CIN[] = 'Third'
+CIN[] = Fourth
+INI;
+
+$out = parse_ini_string($ini,TRUE); //Raw JSON object
+print "Raw JSON object = \n";
+print $out..JX9_EOL;
+
+

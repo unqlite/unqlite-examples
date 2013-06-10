@@ -1,0 +1,45 @@
+/* Static variables */
+function cycle($a, $b, $i=0) {
+    static $switches = []; //Empty JSON array
+    if ( $switches[$i] != null ) $switches[$i] = !$switches[$i]; else !($switches[$i] = true);
+    return ($switches[$i])?$a:$b;
+}
+
+for ($i = 1; $i<3; $i++) {
+    print $i..cycle('a', 'b')..JX9_EOL;
+    for ($j = 1; $j<5; $j++) {
+        print ' '..$j..cycle('a', 'b', 1)..JX9_EOL;
+        for ($k = 1; $k<3; $k++) {
+            print '  '..$k..cycle('c', 'd', 2)..JX9_EOL;
+        }
+    }
+}
+/**
+Output:
+1a
+ 1a
+  1c
+  2d
+ 2b
+  1c
+  2d
+ 3a
+  1c
+  2d
+ 4b
+  1c
+  2d
+2b
+ 1a
+  1c
+  2d
+ 2b
+  1c
+  2d
+ 3a
+  1c
+  2d
+ 4b
+  1c
+  2d
+*/

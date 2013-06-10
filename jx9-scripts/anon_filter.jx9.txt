@@ -1,0 +1,42 @@
+//Anonymous function as a filter callback - Found somewhere in the web
+/*
+Lets say we want to filter a JSON array of number according to a certain criteria; say all the numbers above 100. The code for the same is given below. Note the use of a anonymous function.
+*/
+function filter($condition, $numbers) 
+{
+    $len = count($numbers);
+    //Declare an empty JSON array
+    $filtered = [];
+ 
+    /* Iterate through all the array elements */
+    for($i = 0; $i < $len; $i++) 
+    {
+        $num = $numbers[$i];
+ 
+        /* If the number satisfies the $condition, store
+           it in the $filtered array
+        */
+        if($condition($num)) {
+            $filtered[] = $num;
+        }
+    }
+    return $filtered;
+}
+ 
+/* A JSON array of random numbers between 0 and 1024 inclusive */
+$randomNumbers = [34, rand() & 1023, 22, rand() & 1023, 123, rand() & 1023, 897, rand() & 1023, 4, rand() & 1023 ] ;
+ 
+$condition = function($x) 
+{ 
+    return $x > 100 ? true : false; 
+}; //Don't forget the semi-colon here
+ 
+$greaterThan100 = filter($condition, $randomNumbers);
+ 
+ 
+print $greaterThan100;
+/*
+ * Should output
+
+[ 897, 123, and the random numbers > 100 ] 
+*/

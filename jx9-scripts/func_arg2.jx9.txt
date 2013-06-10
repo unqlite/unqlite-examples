@@ -1,0 +1,18 @@
+
+ /*
+ * Aonymous function as a default argument value.
+ */
+
+function test(
+ $a = (function($a,$b,$c){ return $a+$b+$c; })(14,10+2,15),
+ $v = "Time: "../* Concat */__TIME__,
+ $c = "Date: "../* Concat */__DATE__) 
+{
+	print $a..JX9_EOL;
+	print $v..JX9_EOL;
+	print $c..JX9_EOL;
+}
+test();
+test(512);
+test(1024,32);
+test(1000,2000,4000); 

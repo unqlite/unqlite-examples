@@ -1,0 +1,65 @@
+$dir = 'C:\\Users\\xtremejames183\\Downloads';
+if( count($argv) < 1 ){
+  EXIT("Missing MP3s directory");
+}
+$dir = $argv[0];
+if( !chdir($dir) ){
+	EXIT("Error while changing directory");
+}
+/* Collect MP3 files */
+$pFiles = glob("*.mp3");
+if( is_array($pFiles) ){
+  foreach($pFiles as $pEntry){
+     print "\nMP3: $pEntry ",size_format(filesize($pEntry)),JX9_EOL;/* Give a nice presentation */
+	 /* Open the file in a read*only mode */
+	 $pHandle = fopen($pEntry,'r');
+	 if( $pHandle == FALSE ){
+	   print "IO error while opening $pEntry\n";
+	   continue; /* Ignore */
+	 }
+	 /* Seek 128 bytes from the end */
+	 fseek($pHandle,-128,SEEK_END);
+	 /* Read the 128 raw data */
+	 $zBuf = fread($pHandle,128);
+	 if( !$zBuf || strlen($zBuf) != 128 ){
+		print "$pEntry: Read error\n";
+		/* Ignore */
+		continue;
+	 }
+	 if( $zBuf[0] == 'T' && $zBuf[1] == 'A' && $zBuf[2] == 'G'  ){
+	    $nOfft = 3 /* TAG */;
+		/* Extract the title */
+		$zTitle = substr($zBuf,$nOfft,30);
+		/* Remove trailing and leading NUL bytes and white spaces */
+		$zTitle = trim($zTitle);
+		if( strlen($zTitle) > 0 ){
+				print "Title: $zTitle\n";
+		}
+		/* Extract artist name */
+		$zArtist = substr($zBuf,$nOfft+30,30);
+		/* Remove trailing and leading NUL bytes and white spaces */
+		$zArtist = trim($zArtist);
+		if( strlen($zArtist) > 0 ){
+				print "Artist: $zArtist\n";
+		}
+		/* Extract album name */
+		$zAlbum = substr($zBuf,$nOfft+30+30,30);
+		/* Remove trailing and leading NUL bytes and white spaces */
+		$zAlbum = trim($zAlbum);
+		if( strlen($zAlbum) > 0 ){
+				print "Album: $zAlbum\n";
+		}
+		/* Extract the Year */
+		$zYear = substr($zBuf,$nOfft+30+30+30,4);
+		/* Remove trailing and leading NUL bytes and white spaces */
+		$zYear = trim($zYear);
+		if( strlen($zYear) > 0 ){
+				print "Year: $zYear\n";
+		}
+		/* Next entry */
+		print "------------------------------------------------------\n";
+	 }
+	 /* All done whith this file,close the handle */
+	 fclose($pHandle);
+  }
+}

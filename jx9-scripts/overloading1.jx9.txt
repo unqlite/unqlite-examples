@@ -1,0 +1,17 @@
+
+/* Test the powerful overloading mechanism introduced by the Jx9
+ * Refer to the Jx9 Programming Language Reference Manual at
+ *   http://jx9.symisc.net/jx9_lang.html
+ */
+function foo($a) {
+    //foo() accepts only a single argument
+   return $a..JX9_EOL;
+}
+function foo($a, $b) {
+   // foo() accepts two arguments and perform their addition.
+     return $a + $b;
+}
+
+print foo(5); // Prints "5"
+
+print foo(10, 2); // Prints "12"

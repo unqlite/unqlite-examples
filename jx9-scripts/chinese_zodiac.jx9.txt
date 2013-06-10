@@ -1,0 +1,39 @@
+
+/*
+ * Years to chinese Zodiac
+ */
+ function getChineseZodiac($year){
+ 
+  // JSON array holding Chinese Zodiac Animals
+  $animals = [
+    'Monkey',  // Years 0, 12, 1200, 2004...
+    'Rooster',
+    'Dog',
+    'Boar',
+    'Rat',
+    'Ox',
+    'Tiger',
+    'Rabit',
+    'Dragon',
+    'Snake',
+    'Horse',
+    'Lamb'
+  ];
+
+
+  // Number of animals and years in a calendar rotation
+  $numAnimals = count($animals);
+
+  // Years left until full rotation of calender
+  $yearOffset= round($year) % $numAnimals;
+ 
+  return $animals[$yearOffset]; 
+}
+ print "Years to chinese Zodiac\n";
+ print "1985 ==> ",getChineseZodiac(1985).. JX9_EOL;
+ print "1999 ==> ",getChineseZodiac(1999).. JX9_EOL;
+ print "2013 ==> ",getChineseZodiac(2013).. JX9_EOL;
+ if( count($argv) > 0 && is_numeric($argv[0]) ){
+  /* Test with the given number */
+  print "$argv[0] ==> ",getChineseZodiac($argv[0]) .. JX9_EOL;
+ }

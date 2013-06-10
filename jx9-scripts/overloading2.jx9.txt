@@ -1,0 +1,27 @@
+/* Test the powerful overloading mechanism introduced by Jx9
+ * Refer to the Jx9 Programming Language Reference Manual at
+ *   http://jx9.symisc.net/jx9_lang.html
+ * Test with the full type hinting extensions
+ */
+function foo(string $a)
+{
+  print "a is a string\n";
+  dump($a);
+}
+
+function foo(int $a)
+{
+  print "a is integer\n";
+  dump($a);
+}
+
+function foo(array $a)
+{
+  print "a is a JSON array\n";
+  dump($a);
+}
+
+/* Test the mechanism */
+foo('This is a great feature'); /* a is a string (first foo) */
+foo(52); /* a is integer (second foo) */
+foo([14,__TIME__,__DATE__]); /* a is a JSON array (third foo) */

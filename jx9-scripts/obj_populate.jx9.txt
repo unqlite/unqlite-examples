@@ -1,0 +1,11 @@
+//Populate a JSON object using the subscript [] operator
+
+//Declare an empty JSON object
+$my_info = {};
+
+//Populate the object
+$my_info['name'] = 'John Smith'; 
+
+$my_info['age'] = 27;
+
+print $my_info; // { "name" : "John Smith", "age" : 27 }

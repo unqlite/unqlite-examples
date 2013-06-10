@@ -1,0 +1,19 @@
+
+/* Simple anonymous function */
+$double = function($a) {
+    return $a * 2;
+};
+
+// This is our range of numbers
+$numbers = [1,2,3,4,5];
+
+// Use the Annonymous function as a callback here to 
+// double the size of each element in our 
+// range
+$new_numbers = array_map($double, $numbers);
+
+print implode(' ', $new_numbers);
+/*
+  Should output
+2 4 6 8 10
+*/
